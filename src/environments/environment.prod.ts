@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://ton-backend.up.railway.app'
+  apiUrl: 'https://backend-signalement-production.up.railway.app'
 };
