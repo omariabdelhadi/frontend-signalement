@@ -1,0 +1,45 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Ajouter un signalement</h2>
+
+    <form [formGroup]="CreationGroup" (ngSubmit)="Ajouter()" class="w-50">
+
+        <div class="mb-3">
+            <label class="form-label">Titre</label>
+            <input type="text" formControlName="titre" class="form-control" placeholder="Entrez le titre">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea formControlName="description" class="form-control" placeholder="Entrez la description"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Localisation</label>
+            <input type="text" formControlName="localisation" class="form-control" placeholder="Entrez la localisation">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Image</label>
+
+            <div class="mb-2">
+                <img *ngIf="previewUrl" [src]="previewUrl"
+                     style="height: 500px; width: 600px; border-radius: 10%; object-fit: cover;">
+            </div>
+
+            <input type="file" #fileInput accept="image/*" (change)="SelectedFile($event)" class="form-control">
+        </div>
+
+        <!-- 🔥 BOUTONS -->
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary"
+                    [disabled]="!CreationGroup.valid || !file">
+                Ajouter
+            </button>
+
+            <button type="button" routerLink="/signalementUser" class="btn btn-outline-secondary">
+                Signalement
+            </button>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,151 @@
+<div class="container mt-5" *ngIf="s">
+  <div class="card border-0 shadow mx-auto" style="max-width: 700px;">
+
+    <img [src]="'https://localhost:8033/ImageS/'+s.image"
+         class="card-img-top"
+         style="height: 350px; object-fit: cover;">
+
+    <div class="card-body px-4 py-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold mb-0">{{ s.titre }}</h4>
+
+        <span class="badge px-3 py-2"
+          [ngClass]="{
+            'bg-primary': s.statue === 'NOUVEAU',
+            'bg-warning text-dark': s.statue === 'EN_COURS',
+            'bg-success': s.statue === 'RESOLU',
+            'bg-danger': s.statue === 'REJETE'
+          }">
+          {{ s.statue }}
+        </span>
+      </div>
+
+      <hr>
+
+      <p class="text-muted mb-3">{{ s.description }}</p>
+
+      <div class="d-flex flex-column gap-1 text-secondary small">
+        <span><strong>📍 Localisation :</strong> {{ s.Localisation }}</span>
+        <span><strong>🔢 Référence :</strong> #{{ s.id }}</span>
+        <span><strong>📅 Date :</strong> {{ s.date }}</span>
+      </div>
+    </div>
+
+    <div class="card-footer bg-white border-top px-4 py-3 d-flex gap-2">
+      <button *ngIf="UserServer.UserIdAuthentifier==s.userId && UserServer.etatCompte==='MARCHE'"
+              class="btn btn-warning btn-sm"
+              (click)="Modifier(s.id)">
+        ✏️ Modifier
+      </button>
+
+      <button *ngIf="(UserServer.UserIdAuthentifier==s.userId && s.statue === 'NOUVEAU' && UserServer.etatCompte==='MARCHE') || UserServer.role==='ADMIN'"
+              class="btn btn-danger btn-sm"
+              (click)="deleteS(s.id)">
+        🗑️ Supprimer
+      </button>
+
+      <button (click)="retour()" class="btn btn-outline-secondary btn-sm ms-auto">
+        ← Retour
+      </button>
+    </div>
+  </div>
+
+  <!-- COMMENTAIRES -->
+  <div class="mx-auto mt-4" style="max-width: 700px;">
+    <h5 class="fw-bold mb-3">💬 Commentaires</h5>
+
+    <button *ngIf="UserServer.etatCompte==='MARCHE'"
+            class="btn btn-primary btn-sm mb-3"
+            (click)="showForm=!showForm">
+      {{ showForm ? 'Annuler' : 'Ajouter un commentaire' }}
+    </button>
+
+    <!-- FORM COMMENTAIRE -->
+    <div *ngIf="showForm">
+      <form [formGroup]="CommentaireForm" (ngSubmit)="ajouterCommentaire()">
+        <div class="input-group">
+          <input type="text" formControlName="contenue" class="form-control" placeholder="commentaie...">
+          <button class="btn btn-success" [disabled]="!CommentaireForm.valid">Envoyer</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- LISTE -->
+    <div class="border rounded p-3 bg-light" style="max-height:500px; overflow-y:auto;">
+
+      <div *ngIf="commentaires.length===0" class="text-center text-muted">
+        Aucun commentaire
+      </div>
+
+      <!-- COMMENTAIRE PRINCIPAL -->
+      <ng-container *ngFor="let commentaire of commentaires">
+        <ng-container *ngTemplateOutlet="commentTemplate; context:{ $implicit: commentaire, level:0 }"></ng-container>
+      </ng-container>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- TEMPLATE RECURSIF -->
+<ng-template #commentTemplate let-item let-level="level">
+
+  <div class="mb-3 p-2 border-bottom"
+       [style.marginLeft.px]="level * 20"
+       [ngClass]="item.role==='ADMIN' ? 'bg-warning bg-opacity-10' : ''">
+
+    <!-- LIGNE -->
+    <div class="d-flex align-items-center gap-2 flex-wrap">
+
+      <h6 class="mb-0">
+        {{item.nomuser}}
+        <span *ngIf="item.role==='ADMIN'" class="badge bg-warning text-dark ms-1" style="font-size:10px">ADMIN</span>
+      </h6>
+
+      <span class="flex-grow-1">{{ item.contenue }}</span>
+      <small class="text-muted">{{ item.date }}</small>
+
+      <!-- ACTIONS -->
+      <button class="btn btn-danger btn-sm"
+        *ngIf="(item.UserId===UserServer.UserIdAuthentifier || UserServer.role==='ADMIN') && UserServer.isAuthentifier"
+        (click)="deleteCommentaire(item.id)">🗑️</button>
+
+      <button class="btn btn-outline-secondary btn-sm" (click)="profile(item.UserId)">👤</button>
+
+       <button class="btn btn-outline-secondary btn-sm" [style.backgroundColor]="(item.AdminIdLike && item.AdminIdLike.length > 0) ? 'yellow' : ''" (click)="like(item.id)">like <span>{{ formatLikes(item.likes) }}</span></button>
+
+      <button *ngIf="UserServer.etatCompte==='MARCHE'"
+        class="btn btn-outline-primary btn-sm"
+        (click)="item.showForm=!item.showForm">
+        {{ item.showForm ? 'Annuler' : 'Répondre' }}
+      </button>
+
+      <!-- 🔥 BOUTON VOIR REPONSES (corrigé) -->
+      <button *ngIf="item.reponses && item.reponses.length > 0"
+        class="btn btn-outline-info btn-sm"
+        (click)="item.showReponses=!item.showReponses">
+        {{ item.showReponses ? 'Masquer' : 'Voir réponses ('+item.reponses.length+')' }}
+      </button>
+
+    </div>
+
+    <!-- FORM REPONSE -->
+    <div *ngIf="item.showForm" class="mt-2">
+      <form [formGroup]="ReponseForm" (ngSubmit)="ajouterReponse(item.id)">
+        <div class="input-group">
+          <input type="text" formControlName="contenueReponse" class="form-control form-control-sm" placeholder="commentaie...">
+          <button class="btn btn-success btn-sm" [disabled]="!ReponseForm.valid">Envoyer</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 🔥 RECURSION -->
+    <div *ngIf="item.showReponses">
+      <ng-container *ngFor="let rep of item.reponses">
+        <ng-container *ngTemplateOutlet="commentTemplate; context:{ $implicit: rep, level:level+1 }"></ng-container>
+      </ng-container>
+    </div>
+
+  </div>
+
+</ng-template>

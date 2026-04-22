@@ -1,0 +1,53 @@
+<div class="container mt-5" *ngIf="user">
+    <div class="card border-0 shadow mx-auto" style="max-width: 500px;">
+        
+        <div class="card-body text-center px-4 py-5">
+            
+            <img *ngIf="user.imageProfile" 
+                 [src]="'https://localhost:8033/image/'+user.imageProfile" 
+                 style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; border: 4px solid #dee2e6;">
+            
+            <div *ngIf="!user.imageProfile" 
+                 style="height: 120px; width: 120px; border-radius: 50%; background-color: #6c757d; display: inline-flex; align-items: center; justify-content: center;">
+                <span style="font-size: 40px; color: white;">👤</span>
+            </div>
+
+            <h4 class="fw-bold mt-3 mb-1">{{ user.username }}</h4>
+            <span class="badge bg-secondary mb-3">{{ user.role }}</span>
+
+            <hr>
+
+            <div class="text-start px-3">
+                <div class="d-flex justify-content-between py-2 border-bottom">
+                    <span class="text-muted">Âge</span>
+                    <span class="fw-semibold">{{ user.age }} ans</span>
+                </div>
+                <div class="d-flex justify-content-between py-2">
+                    <span class="text-muted">Emploi</span>
+                    <span class="fw-semibold">{{ user.jobe }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer bg-white border-top px-4 py-3 d-flex gap-2">
+            <button *ngIf="user.id===userServer.UserIdAuthentifier || userServer.role==='ADMIN'" type="button" (click)="deleteProfile(user.id)" class="btn btn-danger btn-sm">
+                🗑️ Supprimer
+            </button>
+            <button *ngIf="user.id===userServer.UserIdAuthentifier" type="button" routerLink="/ModifierProfile" class="btn btn-warning btn-sm">
+                ✏️ Modifier
+            </button>
+            <div class="dropdown d-inline" *ngIf="userServer.role==='ADMIN' && user.role!='ADMIN'">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+                            État
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-danger" (click)="ModifierEtateCompte(user.id, 'Bloque')">🔒 Bloquer</a></li>
+                            <li><a class="dropdown-item text-success" (click)="ModifierEtateCompte(user.id, 'MARCHE')">✅ Activer</a></li>
+                        </ul>
+                    </div>
+            <button type="button" (click)="retour()" class="btn btn-outline-secondary btn-sm ms-auto">
+                ← Retour
+            </button>
+        </div>
+    </div>
+</div>
