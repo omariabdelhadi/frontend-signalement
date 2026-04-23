@@ -34,14 +34,15 @@ export class SignalementDetail implements OnInit{
   user!:User;
   userId!:number;
 
-  constructor(private routerA:ActivatedRoute,private signalementServer:SignalementServer,private cd:ChangeDetectorRef,private router:Router,public UserServer:UserServer,private location:Location,private commentaireServer:CommentaireServer,private fb:FormBuilder){}
+  constructor(private routerA:ActivatedRoute,private signalementServer:SignalementServer,private cd:ChangeDetectorRef,private router:Router,public userServer:UserServer,private location:Location,private commentaireServer:CommentaireServer,private fb:FormBuilder){}
 
   ngOnInit(): void {
     const id=this.routerA.snapshot.params['id'];
     this.signalementServer.getSignalement(id).subscribe({
       next: (data)=>{
         this.s=data;
-        this.UserServer.getUser(this.s.userId).subscribe({
+        if(this.userServer.isAuthentifier){
+          this.userServer.getUser(this.s.userId).subscribe({
       next: (data)=>{
         this.user=data;
         this.cd.detectChanges();
@@ -50,6 +51,7 @@ export class SignalementDetail implements OnInit{
         console.log(err)
       }
     })
+        }
         this.cd.detectChanges();
       },
       error: (err)=>{

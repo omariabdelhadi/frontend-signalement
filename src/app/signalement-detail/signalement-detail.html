@@ -28,18 +28,18 @@
         <span><strong>📍 Localisation :</strong> {{ s.Localisation }}</span>
         <span><strong>🔢 Référence :</strong> #{{ s.id }}</span>
         <span><strong>📅 Date :</strong> {{ s.date }}</span>
-        <span *ngIf="UserServer.isAuthentifier && user"><strong>Ajouter par :</strong> {{ user.username }} <button class="btn btn-outline-secondary btn-sm" (click)="profile(user.id)">👤</button> </span>
+        <span *ngIf="userServer.isAuthentifier && user"><strong>Ajouter par :</strong> {{ user.username }} <button class="btn btn-outline-secondary btn-sm" (click)="profile(user.id)">👤</button> </span>
       </div>
     </div>
 
     <div class="card-footer bg-white border-top px-4 py-3 d-flex gap-2">
-      <button *ngIf="UserServer.UserIdAuthentifier==s.userId && UserServer.etatCompte==='MARCHE'"
+      <button *ngIf="userServer.UserIdAuthentifier==s.userId && userServer.etatCompte==='MARCHE'"
               class="btn btn-warning btn-sm"
               (click)="Modifier(s.id)">
         ✏️ Modifier
       </button>
 
-      <button *ngIf="(UserServer.UserIdAuthentifier==s.userId && s.statue === 'NOUVEAU' && UserServer.etatCompte==='MARCHE') || UserServer.role==='ADMIN'"
+      <button *ngIf="(userServer.UserIdAuthentifier==s.userId && s.statue === 'NOUVEAU' && userServer.etatCompte==='MARCHE') || userServer.role==='ADMIN'"
               class="btn btn-danger btn-sm"
               (click)="deleteS(s.id)">
         🗑️ Supprimer
@@ -55,7 +55,7 @@
   <div class="mx-auto mt-4" style="max-width: 700px;">
     <h5 class="fw-bold mb-3">💬 Commentaires</h5>
 
-    <button *ngIf="UserServer.etatCompte==='MARCHE'"
+    <button *ngIf="userServer.etatCompte==='MARCHE'"
             class="btn btn-primary btn-sm mb-3"
             (click)="showForm=!showForm">
       {{ showForm ? 'Annuler' : 'Ajouter un commentaire' }}
@@ -108,14 +108,14 @@
 
       <!-- ACTIONS -->
       <button class="btn btn-danger btn-sm"
-        *ngIf="(item.UserId===UserServer.UserIdAuthentifier || UserServer.role==='ADMIN') && UserServer.isAuthentifier"
+        *ngIf="(item.UserId===userServer.UserIdAuthentifier || userServer.role==='ADMIN') && userServer.isAuthentifier"
         (click)="deleteCommentaire(item.id)">🗑️</button>
 
-      <button class="btn btn-outline-secondary btn-sm" *ngIf="UserServer.isAuthentifier" (click)="profile(item.UserId)">👤</button>
+      <button class="btn btn-outline-secondary btn-sm" *ngIf="userServer.isAuthentifier" (click)="profile(item.UserId)">👤</button>
 
-       <button class="btn btn-outline-secondary btn-sm" *ngIf="UserServer.isAuthentifier" [style.backgroundColor]="(item.AdminIdLike && item.AdminIdLike.length > 0) ? 'yellow' : ''" (click)="like(item.id)">like <span>{{ formatLikes(item.likes) }}</span></button>
+       <button class="btn btn-outline-secondary btn-sm" *ngIf="userServer.isAuthentifier" [style.backgroundColor]="(item.AdminIdLike && item.AdminIdLike.length > 0) ? 'yellow' : ''" (click)="like(item.id)">like <span>{{ formatLikes(item.likes) }}</span></button>
 
-      <button *ngIf="UserServer.etatCompte==='MARCHE'"
+      <button *ngIf="userServer.etatCompte==='MARCHE'"
         class="btn btn-outline-primary btn-sm"
         (click)="item.showForm=!item.showForm">
         {{ item.showForm ? 'Annuler' : 'Répondre' }}
