@@ -15,6 +15,7 @@ import { FormGroup,ReactiveFormsModule, FormBuilder, Validators} from '@angular/
 import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
+import { User } from '../modele/User';
 
 @Component({
   selector: 'app-signalement-detail',
@@ -30,6 +31,7 @@ export class SignalementDetail implements OnInit{
   CommentaireForm!:FormGroup;
   ReponseForm!:FormGroup;  
   apiUrl=environment.apiUrl;
+  user!:User;
 
   constructor(private routerA:ActivatedRoute,private signalementServer:SignalementServer,private cd:ChangeDetectorRef,private router:Router,public UserServer:UserServer,private location:Location,private commentaireServer:CommentaireServer,private fb:FormBuilder){}
 
@@ -38,6 +40,15 @@ export class SignalementDetail implements OnInit{
     this.signalementServer.getSignalement(id).subscribe({
       next: (data)=>{
         this.s=data;
+        this.cd.detectChanges();
+      },
+      error: (err)=>{
+        console.log(err)
+      }
+    })
+    this.UserServer.getUser(this.s.userId).subscribe({
+      next: (data)=>{
+        this.user=data;
         this.cd.detectChanges();
       },
       error: (err)=>{
