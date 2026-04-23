@@ -28,7 +28,7 @@
         <span><strong>📍 Localisation :</strong> {{ s.Localisation }}</span>
         <span><strong>🔢 Référence :</strong> #{{ s.id }}</span>
         <span><strong>📅 Date :</strong> {{ s.date }}</span>
-        <span><strong>Ajouter par :</strong> {{ user.username }} <button class="btn btn-outline-secondary btn-sm" *ngIf="UserServer.isAuthentifier" (click)="profile(user.id)">👤</button> </span>
+        <span *ngIf="UserServer.isAuthentifier"><strong>Ajouter par :</strong> {{ user.username }} <button class="btn btn-outline-secondary btn-sm" (click)="profile(user.id)">👤</button> </span>
       </div>
     </div>
 
