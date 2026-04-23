@@ -1,70 +1,78 @@
-<div class="container mt-4">
+<div class="su-container">
+  <div class="container">
 
-    <div *ngIf="userServer.etatCompte==='Bloque'" class="alert alert-danger" role="alert">
-        ⚠️ Votre compte a été bloqué par l'administrateur. Vous pouvez uniquement consulter les signalements.
+    <div *ngIf="userServer.etatCompte==='Bloque'" class="alert alert-danger su-alert" role="alert">
+      ⚠️ Votre compte a été bloqué par l'administrateur. Vous pouvez uniquement consulter les signalements.
     </div>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Vos Signalements</h2>
-        <div class="d-flex gap-3">
-            <button class="btn btn-outline-primary btn-sm" routerLink="/SignalementPublice">Tous les signalements</button>
-            <button class="btn btn-outline-primary btn-sm" (click)="mesCommentaires()">Mes Commentaires</button>
-            <button class="btn btn-primary btn-sm" *ngIf="userServer.etatCompte==='MARCHE'" (click)="AjouterSignalement()">+ Ajouter</button>
-        </div>
+    <div class="d-flex justify-content-between align-items-center mb-3 pt-2">
+      <h2 class="su-title">Vos Signalements</h2>
+      <div class="d-flex gap-2">
+        <button class="su-btn-outline btn btn-sm" routerLink="/SignalementPublice">Tous les signalements</button>
+        <button class="su-btn-outline btn btn-sm" (click)="mesCommentaires()">Mes Commentaires</button>
+        <button class="su-btn-add btn btn-sm" *ngIf="userServer.etatCompte==='MARCHE'" (click)="AjouterSignalement()">+ Ajouter</button>
+      </div>
     </div>
 
     <div class="d-flex gap-3 mb-3 align-items-center">
-        <span class="fw-bold">Filtrer :</span>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="statue" id="NOUVEAU" value="NOUVEAU" (click)="statueChoix('NOUVEAU')">
-            <label class="form-check-label" for="NOUVEAU">Nouveau</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="statue" id="EN_COURS" value="EN_COURS" (click)="statueChoix('EN_COURS')">
-            <label class="form-check-label" for="EN_COURS">En cours</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="statue" id="RESOLU" value="RESOLU" (click)="statueChoix('RESOLU')">
-            <label class="form-check-label" for="RESOLU">Résolu</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="statue" id="TOUS" (click)="toutsSignalement()">
-            <label class="form-check-label" for="TOUS">Tous</label>
-        </div>
+      <span class="su-filter-label">Filtrer :</span>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="statue" id="NOUVEAU" (click)="statueChoix('NOUVEAU')">
+        <label class="form-check-label" for="NOUVEAU">Nouveau</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="statue" id="EN_COURS" (click)="statueChoix('EN_COURS')">
+        <label class="form-check-label" for="EN_COURS">En cours</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="statue" id="RESOLU" (click)="statueChoix('RESOLU')">
+        <label class="form-check-label" for="RESOLU">Résolu</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="statue" id="TOUS" (click)="toutsSignalement()">
+        <label class="form-check-label" for="TOUS">Tous</label>
+      </div>
     </div>
 
-    <table class="table table-bordered table-striped table-hover">
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Titre</th>
-                <th>Statut</th>
-                <th>Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let s of signalements">
-                <td>{{ s.id }}</td>
-                <td>{{ s.titre }}</td>
-                <td>
-                    <span class="badge" 
-                          [ngClass]="{
-                            'bg-primary': s.statue === 'NOUVEAU',
-                            'bg-warning text-dark': s.statue === 'EN_COURS',
-                            'bg-success': s.statue === 'RESOLU',
-                            'bg-danger': s.statue === 'REJETE'
-                          }">
-                        {{ s.statue }}
-                    </span>
-                </td>
-                <td>{{s.date}}</td>
-                <td class="d-flex gap-2">
-                    <button class="btn btn-info btn-sm" (click)="details(s.id)">Détails</button>
-                    <button *ngIf="userServer.etatCompte==='MARCHE'" class="btn btn-warning btn-sm" (click)="Modifier(s.id)">Modifier</button>
-                    <button *ngIf="s.statue === 'NOUVEAU' && userServer.etatCompte==='MARCHE'" class="btn btn-danger btn-sm" (click)="deleteS(s.id)">Supprimer</button>
-                </td>
-            </tr>
-        </tbody>
+    <div *ngIf="signalements && signalements.length === 0" class="su-empty">
+      <div class="su-empty-icon">📭</div>
+      <p class="su-empty-text">Vous n'avez aucun signalement pour le moment</p>
+    </div>
+
+    <table *ngIf="signalements && signalements.length > 0" class="table table-bordered table-striped table-hover su-table">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Titre</th>
+          <th>Statut</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of signalements">
+          <td>{{ s.id }}</td>
+          <td>{{ s.titre }}</td>
+          <td>
+            <span class="badge"
+                  [ngClass]="{
+                    'bg-primary': s.statue === 'NOUVEAU',
+                    'bg-warning text-dark': s.statue === 'EN_COURS',
+                    'bg-success': s.statue === 'RESOLU',
+                    'bg-danger': s.statue === 'REJETE'
+                  }">
+              {{ s.statue }}
+            </span>
+          </td>
+          <td>{{ s.date }}</td>
+          <td class="d-flex gap-2">
+            <button class="su-btn-details btn btn-sm" (click)="details(s.id)">Détails</button>
+            <button *ngIf="userServer.etatCompte==='MARCHE'" class="btn btn-warning btn-sm" (click)="Modifier(s.id)">Modifier</button>
+            <button *ngIf="s.statue === 'NOUVEAU' && userServer.etatCompte==='MARCHE'" class="btn btn-danger btn-sm" (click)="deleteS(s.id)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
+
+  </div>
 </div>

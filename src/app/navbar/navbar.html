@@ -1,26 +1,39 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
- <a class="navbar-brand" href="#">Navbar</a>
- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-   <span class="navbar-toggler-icon"></span>
- </button>
- <div class="collapse navbar-collapse" id="navbarNav">
-   <ul class="navbar-nav">
-     <li class="nav-item active">
-       <a class="nav-link" [routerLink]="Userserver.role==='ADMIN' || !Userserver.isAuthentifier?'/SignalementPublice':'/signalementUser'" >Home</a>
-     </li>
-     <li *ngIf="Userserver.isAuthentifier" class="nav-item">
-      <a class="nav-link" routerLink="/profile/{{Userserver.UserIdAuthentifier}}">Profile</a>
-     </li>
-     <li *ngIf="Userserver.isAuthentifier" class="nav-item">
-      <a class="nav-link" (click)="Logout()" href="#">Logout</a>
-     </li>
-     <li *ngIf="!Userserver.isAuthentifier" class="nav-item">
-      <a class="nav-link" routerLink="/Authentification" href="#">Login</a>
-     </li>
-     <li *ngIf="!Userserver.isAuthentifier" class="nav-item">
-      <a class="nav-link" routerLink="/inscription" href="#">s'inscrire</a>
-     </li>
-   </ul>
-
- </div>
+<nav class="navbar navbar-expand-lg" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="Userserver.role==='ADMIN' || !Userserver.isAuthentifier?'/SignalementPublice':'/signalementUser'">
+      📍 Signalement
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="Userserver.role==='ADMIN' || !Userserver.isAuthentifier?'/SignalementPublice':'/signalementUser'">
+            🏠 Accueil
+          </a>
+        </li>
+        <li *ngIf="Userserver.isAuthentifier" class="nav-item">
+          <a class="nav-link" routerLink="/profile/{{Userserver.UserIdAuthentifier}}">
+            👤 {{ Userserver.userName }}
+          </a>
+        </li>
+        <li *ngIf="Userserver.isAuthentifier" class="nav-item">
+          <a class="nav-link logout-link" (click)="Logout()">
+            🚪 Déconnexion
+          </a>
+        </li>
+        <li *ngIf="!Userserver.isAuthentifier" class="nav-item">
+          <a class="nav-link" routerLink="/Authentification">
+            🔑 Connexion
+          </a>
+        </li>
+        <li *ngIf="!Userserver.isAuthentifier" class="nav-item">
+          <a class="nav-link" routerLink="/inscription">
+            ✏️ S'inscrire
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>

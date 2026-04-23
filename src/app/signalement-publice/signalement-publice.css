@@ -1,0 +1,88 @@
+.sp-container {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.sp-title {
+  color: #1a1a2e;
+  font-weight: 700;
+}
+
+.sp-btn-admin {
+  background-color: transparent;
+  border: 2px solid #1a1a2e;
+  color: #1a1a2e;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.sp-btn-admin:hover {
+  background-color: #1a1a2e;
+  color: #fff;
+}
+
+.sp-filter-label {
+  color: #1a1a2e;
+  font-weight: 700;
+}
+
+.sp-table {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sp-table thead {
+  background-color: #1a1a2e !important;
+}
+
+.sp-table tbody tr:hover {
+  background-color: rgba(233, 69, 96, 0.05);
+}
+
+.sp-empty {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 60px 20px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sp-empty-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.sp-empty-text {
+  color: #888;
+  font-size: 1.1rem;
+}
+
+.sp-btn-details {
+  background-color: #0f3460;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.sp-btn-details:hover {
+  background-color: #16213e;
+  color: white;
+}
+
+.sp-btn-retour {
+  border: 2px solid #e94560;
+  color: #e94560;
+  border-radius: 8px;
+  font-weight: 600;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.sp-btn-retour:hover {
+  background-color: #e94560;
+  color: #fff;
+}

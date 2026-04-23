@@ -1,0 +1,68 @@
+.inscription-container {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+}
+
+.inscription-card {
+  border: none;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+}
+
+.inscription-title {
+  color: #1a1a2e;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.inscription-label {
+  color: #444;
+  font-weight: 600;
+}
+
+.inscription-input {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 10px 14px;
+  transition: all 0.3s ease;
+}
+
+.inscription-input:focus {
+  border-color: #e94560;
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.15);
+}
+
+.inscription-btn-primary {
+  background-color: #e94560;
+  border-color: #e94560;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 600;
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.inscription-btn-primary:hover {
+  background-color: #c73652;
+}
+
+.inscription-btn-primary:disabled {
+  background-color: #f0a0ae;
+}
+
+.inscription-btn-outline {
+  border: 2px solid #e94560;
+  color: #e94560;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 600;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.inscription-btn-outline:hover {
+  background-color: #e94560;
+  color: #fff;
+}

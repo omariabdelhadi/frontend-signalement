@@ -1,26 +1,26 @@
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <div class="card shadow p-4" style="width: 400px;">
-        <h3 class="text-center mb-4">Inscription</h3>
+<div class="inscription-container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="inscription-card shadow p-4" style="width: 400px;">
+        <h3 class="inscription-title text-center mb-4">Inscription</h3>
         <form [formGroup]="InscreptionU" (ngSubmit)="Inscreption()">
             <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input type="text" formControlName="username" class="form-control" placeholder="Entrez votre username">
+                <label class="inscription-label form-label">Username</label>
+                <input type="text" formControlName="username" class="inscription-input form-control" placeholder="Entrez votre username">
             </div>
             <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" formControlName="password" class="form-control" placeholder="Entrez votre password">
+                <label class="inscription-label form-label">Password</label>
+                <input type="password" formControlName="password" class="inscription-input form-control" placeholder="Entrez votre password">
             </div>
             <div class="mb-3">
-                <label class="form-label">Age</label>
-                <input type="number" formControlName="age" class="form-control" placeholder="Entrez votre age">
+                <label class="inscription-label form-label">Age</label>
+                <input type="number" formControlName="age" class="inscription-input form-control" placeholder="Entrez votre age">
             </div>
             <div class="mb-3">
-                <label class="form-label">Emploi</label>
-                <input type="text" formControlName="Emploi" class="form-control" placeholder="Entrez votre emploi">
+                <label class="inscription-label form-label">Emploi</label>
+                <input type="text" formControlName="Emploi" class="inscription-input form-control" placeholder="Entrez votre emploi">
             </div>
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary" [disabled]="!InscreptionU.valid">Inscription</button>
-                <button type="button" routerLink="/Authentification" class="btn btn-outline-primary">Login</button>
+                <button type="submit" class="inscription-btn-primary" [disabled]="!InscreptionU.valid">Inscription</button>
+                <button type="button" routerLink="/Authentification" class="inscription-btn-outline">Login</button>
             </div>
         </form>
     </div>

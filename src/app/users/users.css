@@ -1,0 +1,74 @@
+.users-container {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.users-title {
+  color: #1a1a2e;
+  font-weight: 700;
+}
+
+.users-btn-retour {
+  border: 2px solid #1a1a2e;
+  color: #1a1a2e;
+  border-radius: 8px;
+  font-weight: 600;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.users-btn-retour:hover {
+  background-color: #1a1a2e;
+  color: #fff;
+}
+
+.users-filter-label {
+  color: #1a1a2e;
+  font-weight: 700;
+}
+
+.users-table {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.users-table thead {
+  background-color: #1a1a2e !important;
+}
+
+.users-table tbody tr:hover {
+  background-color: rgba(233, 69, 96, 0.05);
+}
+
+.users-empty {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 60px 20px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.users-empty-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.users-empty-text {
+  color: #888;
+  font-size: 1.1rem;
+}
+
+.users-btn-action {
+  background-color: #0f3460;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.users-btn-action:hover {
+  background-color: #16213e;
+  color: white;
+}

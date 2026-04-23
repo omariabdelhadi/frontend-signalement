@@ -1,0 +1,93 @@
+.su-container {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.su-title {
+  color: #1a1a2e;
+  font-weight: 700;
+}
+
+.su-alert {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.su-btn-outline {
+  background-color: transparent;
+  border: 2px solid #1a1a2e;
+  color: #1a1a2e;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.su-btn-outline:hover {
+  background-color: #1a1a2e;
+  color: #fff;
+}
+
+.su-btn-add {
+  background-color: #e94560;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.su-btn-add:hover {
+  background-color: #c73652;
+  color: white;
+}
+
+.su-filter-label {
+  color: #1a1a2e;
+  font-weight: 700;
+}
+
+.su-table {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.su-table thead {
+  background-color: #1a1a2e !important;
+}
+
+.su-table tbody tr:hover {
+  background-color: rgba(233, 69, 96, 0.05);
+}
+
+.su-empty {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 60px 20px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.su-empty-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.su-empty-text {
+  color: #888;
+  font-size: 1.1rem;
+}
+
+.su-btn-details {
+  background-color: #0f3460;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.su-btn-details:hover {
+  background-color: #16213e;
+  color: white;
+}

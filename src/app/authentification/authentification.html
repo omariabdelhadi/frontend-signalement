@@ -1,18 +1,18 @@
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <div class="card shadow p-4" style="width: 400px;">
-        <h3 class="text-center mb-4">Connexion</h3>
+<div class="auth-container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="auth-card shadow p-4" style="width: 400px;">
+        <h3 class="auth-title text-center mb-4">Connexion</h3>
         <form [formGroup]="Auth" (ngSubmit)="auth()">
             <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input type="text" formControlName="username" class="form-control" placeholder="Entrez votre username">
+                <label class="auth-label form-label">Username</label>
+                <input type="text" formControlName="username" class="auth-input form-control" placeholder="Entrez votre username">
             </div>
             <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" formControlName="password" class="form-control" placeholder="Entrez votre password">
+                <label class="auth-label form-label">Password</label>
+                <input type="password" formControlName="password" class="auth-input form-control" placeholder="Entrez votre password">
             </div>
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary" [disabled]="!Auth.valid">Login</button>
-                <button type="button" routerLink="/inscription" class="btn btn-outline-primary">Inscription</button>
+                <button type="submit" class="auth-btn-primary" [disabled]="!Auth.valid">Login</button>
+                <button type="button" routerLink="/inscription" class="auth-btn-outline">Inscription</button>
             </div>
         </form>
     </div>
