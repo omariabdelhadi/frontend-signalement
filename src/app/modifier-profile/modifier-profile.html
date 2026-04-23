@@ -9,7 +9,7 @@
                 
                 <div class="text-center mb-4">
                     <img *ngIf="user.imageProfile && !preview" 
-                         [src]="'https://localhost:8033/image/'+user.imageProfile" 
+                         [src]="apiUrl + '/image/' + user.imageProfile" 
                          style="height: 150px; width: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #dee2e6;">
                     <img *ngIf="preview" 
                          [src]="preview" 

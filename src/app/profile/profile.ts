@@ -6,6 +6,7 @@ import { User } from '../modele/User';
 import { ActivatedRoute, Router, RouterLink, provideRouter } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { Location } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +17,8 @@ import { Location } from '@angular/common';
 export class Profile implements OnInit{
 
   user!:User;
+  apiUrl=environment.apiUrl;
+
 
   constructor(public userServer:UserServer,private cd:ChangeDetectorRef,private router:Router,private routerA:ActivatedRoute,private location:Location){}
 

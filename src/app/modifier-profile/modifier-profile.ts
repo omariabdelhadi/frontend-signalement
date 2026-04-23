@@ -6,6 +6,7 @@ import { UserServer } from '../servers/user-server';
 import { ChangeDetectorRef } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-modifier-profile',
@@ -19,6 +20,8 @@ export class ModifierProfile implements OnInit{
   file!:File;
   user!:User;
   preview!:string;
+  apiUrl=environment.apiUrl;
+
 
   constructor(private userServer:UserServer,private fb:FormBuilder,private cd:ChangeDetectorRef){}
 

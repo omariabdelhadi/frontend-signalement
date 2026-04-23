@@ -14,6 +14,7 @@ import { CommentaireServer } from '../servers/commentaire-server';
 import { FormGroup,ReactiveFormsModule, FormBuilder, Validators} from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-signalement-detail',
@@ -28,6 +29,7 @@ export class SignalementDetail implements OnInit{
   showForm:boolean=false;
   CommentaireForm!:FormGroup;
   ReponseForm!:FormGroup;  
+  apiUrl=environment.apiUrl;
 
   constructor(private routerA:ActivatedRoute,private signalementServer:SignalementServer,private cd:ChangeDetectorRef,private router:Router,public UserServer:UserServer,private location:Location,private commentaireServer:CommentaireServer,private fb:FormBuilder){}
 
