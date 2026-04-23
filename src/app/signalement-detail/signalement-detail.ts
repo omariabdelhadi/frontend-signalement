@@ -41,16 +41,15 @@ export class SignalementDetail implements OnInit{
     this.signalementServer.getSignalement(id).subscribe({
       next: (data)=>{
         this.s=data;
-        this.userId=this.s.userId;
+        this.UserServer.getUser(this.s.userId).subscribe({
+      next: (data)=>{
+        this.user=data;
         this.cd.detectChanges();
       },
       error: (err)=>{
         console.log(err)
       }
     })
-    this.UserServer.getUser(this.userId).subscribe({
-      next: (data)=>{
-        this.user=data;
         this.cd.detectChanges();
       },
       error: (err)=>{
