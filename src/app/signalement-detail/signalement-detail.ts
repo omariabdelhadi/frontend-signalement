@@ -32,6 +32,7 @@ export class SignalementDetail implements OnInit{
   ReponseForm!:FormGroup;  
   apiUrl=environment.apiUrl;
   user!:User;
+  userId!:number;
 
   constructor(private routerA:ActivatedRoute,private signalementServer:SignalementServer,private cd:ChangeDetectorRef,private router:Router,public UserServer:UserServer,private location:Location,private commentaireServer:CommentaireServer,private fb:FormBuilder){}
 
@@ -40,13 +41,14 @@ export class SignalementDetail implements OnInit{
     this.signalementServer.getSignalement(id).subscribe({
       next: (data)=>{
         this.s=data;
+        this.userId=this.s.userId;
         this.cd.detectChanges();
       },
       error: (err)=>{
         console.log(err)
       }
     })
-    this.UserServer.getUser(this.s.userId).subscribe({
+    this.UserServer.getUser(this.userId).subscribe({
       next: (data)=>{
         this.user=data;
         this.cd.detectChanges();
