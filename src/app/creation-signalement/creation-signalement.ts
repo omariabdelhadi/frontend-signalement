@@ -25,9 +25,9 @@ export class CreationSignalement implements OnInit {
 
   ngOnInit(): void {
     this.CreationGroup=new FormGroup({
-      titre:this.fb.control("",[Validators.required,Validators.minLength(3),Validators.maxLength(11)]),
-      description:this.fb.control("",[Validators.required,Validators.minLength(3),Validators.maxLength(100)]),
-      localisation:this.fb.control("",[Validators.required,Validators.minLength(3),Validators.maxLength(10)])
+      titre:this.fb.control("",[Validators.required,Validators.minLength(3),Validators.maxLength(100)]),
+      description:this.fb.control("",[Validators.required,Validators.minLength(3),Validators.maxLength(1000)]),
+      localisation:this.fb.control("",[Validators.required,Validators.minLength(3),Validators.maxLength(100)])
     })
   }
   SelectedFile(event:any){

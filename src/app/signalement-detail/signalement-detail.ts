@@ -193,6 +193,7 @@ export class SignalementDetail implements OnInit{
     })
   }
   formatLikes(likes: number): string {
+  if (likes == null) return '0';
   if (likes >= 1000000) {
     return (likes / 1000000).toFixed(likes % 1000000 === 0 ? 0 : 1) + 'm';
   }
