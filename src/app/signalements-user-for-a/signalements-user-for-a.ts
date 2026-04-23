@@ -7,6 +7,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { UserServer } from '../servers/user-server';
 import { NgClass } from '@angular/common';
+import { User } from '../modele/User';
 
 @Component({
   selector: 'app-signalements-user-for-a',
@@ -16,6 +17,7 @@ import { NgClass } from '@angular/common';
 })
 export class SignalementsUserForA implements OnInit{
   signalements:Array<Signalement>=[];
+  user!:User;
   constructor(private signalementServer:SignalementServer,private cd:ChangeDetectorRef,private router:Router,public userServer:UserServer,private routerA:ActivatedRoute){}
 
   ngOnInit(): void {
@@ -23,6 +25,15 @@ export class SignalementsUserForA implements OnInit{
     this.signalementServer.getSignalementUser(id).subscribe({
       next: (data)=>{
         this.signalements=data;
+        this.cd.detectChanges();
+      },
+      error: (err)=>{
+        console.log(err)
+      }
+    })
+    this.userServer.getUser(id).subscribe({
+      next: (data)=>{
+        this.user=data;
         this.cd.detectChanges();
       },
       error: (err)=>{
