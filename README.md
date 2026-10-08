@@ -1,59 +1,46 @@
-# Test
+# Signalement App : Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.2.
+Interface web Angular d'une application de **signalement citoyen** avec un agent IA, selon le rôle de l'utilisateur (Administrateur / Utilisateur).
 
-## Development server
+> **Dépôt backend (Spring Boot) :** [backend-signalement](https://github.com/omariabdelhadi/backend-signalement)
 
-To start a local development server, run:
+## Objectif
+
+- créer et consulter des signalements (titre, description, pièces jointes) ;
+- se connecter de façon sécurisée ;
+- utiliser l'agent IA adapté à son rôle.
+
+## Technologies
+
+| Domaine | Technologies |
+|---|---|
+| Framework | Angular, TypeScript |
+| Authentification | JWT (via l'API backend) |
+| Backend | Spring Boot ([dépôt séparé](https://github.com/omariabdelhadi/backend-signalement)) |
+
+## Lancer le projet
+
+### Prérequis
+
+- Node.js et npm
+- Angular CLI : `npm install -g @angular/cli`
+- Le backend démarré sur `http://localhost:8080`
+
+### Installation et démarrage
 
 ```bash
+git clone https://github.com/omariabdelhadi/frontend-signalement.git
+cd frontend-signalement
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Ouvre `http://localhost:4200`. L'application se recharge à chaque modification.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Build de production
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Les fichiers générés se trouvent dans `dist/`.
